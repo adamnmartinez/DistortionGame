@@ -1,11 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Callbacks;
-using UnityEditor.EditorTools;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class RotateGravity : MonoBehaviour
 {
@@ -50,14 +45,14 @@ public class RotateGravity : MonoBehaviour
     void Update()
     {
         if(canShift){
-            if (Input.GetKeyDown(KeyCode.Q)) {
+            if (Input.GetKeyDown(KeyCode.E)) {
                 StartCoroutine(StartRotation(90));
                 idx += 1;
                 if (idx > gravityVectors.Length - 1) idx = 0;
                 gravityDirection = gravityVectors[idx];
             }
 
-            if (Input.GetKeyDown(KeyCode.E)) {
+            if (Input.GetKeyDown(KeyCode.Q)) {
                 StartCoroutine(StartRotation(-90)); 
                 idx -= 1;
                 if(idx < 0) idx = gravityVectors.Length - 1;

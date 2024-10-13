@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,16 +22,18 @@ public class UIController : MonoBehaviour
 
     public float timeTaken = 0.0f;
 
-    public bool menuOpen;
+    public bool menuOpen = false;
 
     public void OpenMenu()
     {
+        menuOpen = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0;
     }
 
     public void CloseMenu()
     {
+        menuOpen = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }

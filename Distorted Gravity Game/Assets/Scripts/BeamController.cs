@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BeamController : MonoBehaviour
@@ -10,7 +8,8 @@ public class BeamController : MonoBehaviour
     public void Reset()
     {
         for (int i = 0; i < casters.Length; i++){
-            casters[i].GetComponent<CasterScript>().Activate();
+            CasterScript cstr = casters[i].GetComponent<CasterScript>();
+            if(cstr.startDeactivated) cstr.Deactivate(); else cstr.Activate();
         }
 
         for (int i = 0; i < consoles.Length; i++){

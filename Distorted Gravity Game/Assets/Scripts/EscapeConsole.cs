@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EscapeConsole : MonoBehaviour
 {
     public Animator animator;
-    public LevelInteraction level;
+    LevelInteraction level;
     public GameObject Player;
 
     public bool _interactable = false;
@@ -23,6 +21,7 @@ public class EscapeConsole : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
+        level = Player.GetComponent<LevelInteraction>();
     }
 
     void Update()

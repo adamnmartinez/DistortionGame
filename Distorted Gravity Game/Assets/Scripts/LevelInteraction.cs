@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class LevelInteraction : MonoBehaviour
 {
     public int obstacleLayer;
-    public RotateGravity rg;
+    SoundEffects sound;
+    RotateGravity rg;
     public BeamController beams;
     public UIController ui;
     public Vector3 spawnPoint;
@@ -17,6 +14,7 @@ public class LevelInteraction : MonoBehaviour
     void Awake()
     {
         rg = GetComponent<RotateGravity>();
+        sound = GetComponent<SoundEffects>();
     }
 
     public void ResetGame()
@@ -44,6 +42,7 @@ public class LevelInteraction : MonoBehaviour
     public void Victory()
     {
         ui.OpenVictoryScreen();
+        sound.playWinSFX();
     }
 
     void OnCollisionEnter2D(Collision2D collision)

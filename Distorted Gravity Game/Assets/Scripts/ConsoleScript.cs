@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ConsoleScript : MonoBehaviour
 {
     public CasterScript[] LinkedCasters;
     public GameObject Player;
-    public Animator animator;
+    Animator animator;
+    AudioSource asrc;
 
     public bool _active = false;
     public bool Active {
@@ -42,6 +40,7 @@ public class ConsoleScript : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
+        asrc = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -50,7 +49,10 @@ public class ConsoleScript : MonoBehaviour
         if (distance <= 3f){
             Interactable = true;
             if(Input.GetKeyDown(KeyCode.F)){
-                for(int i = 0; i < LinkedCasters.Length; i++) LinkedCasters[i].Deactivate();
+                asrc.Play();
+                for(int i = 0; i < LinkedCasters.Length; i++) {
+                    if(LinkedCasters[i].startDeactivated) LinkedCasters[i].Activate(); else LinkedCasters[i].Deactivate();
+                }
                 Active = true;
             }
         } else {

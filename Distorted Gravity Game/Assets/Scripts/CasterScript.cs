@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.MPE;
 using UnityEngine;
 
 public class CasterScript : MonoBehaviour
@@ -10,6 +6,7 @@ public class CasterScript : MonoBehaviour
     public GameObject[] casterTiles;
     public GameObject laserObjectRef;
     public float beamLength = 2f;
+    public bool startDeactivated = false;
 
     public void Activate()
     {
@@ -36,6 +33,6 @@ public class CasterScript : MonoBehaviour
 
     void Start()
     {
-        Activate();
+        if(startDeactivated) Deactivate(); else Activate();
     }
 }
