@@ -31,7 +31,7 @@ public class EscapeConsole : MonoBehaviour
         if (distance <= 3f){
             Interactable = true;
             if(Input.GetKeyDown(KeyCode.F)){
-                level.ResetGame();
+                level.Victory();
             }
         } else {
             Interactable = false;

@@ -30,6 +30,8 @@ public class RotateGravity : MonoBehaviour
     public void ResetGravity()
     {
         gravityDirection = Vector2.down;
+        StopAllCoroutines();
+        canShift = true;
         gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
         idx = 0;
     }

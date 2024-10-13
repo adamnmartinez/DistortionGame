@@ -9,7 +9,8 @@ public class LevelInteraction : MonoBehaviour
     public int obstacleLayer;
     public RotateGravity rg;
     public BeamController beams;
-    public Vector3 spawnPoint = new Vector3(-25, 3 ,0);
+    public UIController ui;
+    public Vector3 spawnPoint;
 
     public int deathCount = 0;
 
@@ -22,7 +23,16 @@ public class LevelInteraction : MonoBehaviour
     {
         gameObject.transform.localPosition = spawnPoint;
         rg.ResetGravity();
+        ui.ResetTimer();
+        ui.CloseAllMenus();
         beams.Reset();
+
+    }
+
+    public void TrueReset()
+    {
+        ResetGame();
+        deathCount = 0;
     }
 
     public void PlayerDeath()
@@ -31,8 +41,13 @@ public class LevelInteraction : MonoBehaviour
         deathCount += 1;
     }
 
+    public void Victory()
+    {
+        ui.OpenVictoryScreen();
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == obstacleLayer) ResetGame();
+        if(collision.gameObject.layer == obstacleLayer) PlayerDeath();
     }
 }
